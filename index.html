@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>document.documentElement.classList.add('js');</script>
+<title>Blueprint — More qualified leads for local service businesses</title>
+<meta name="description" content="Blueprint builds and manages Google Ads campaigns that put local service businesses in front of customers actively searching — so you get booked jobs, not just clicks." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blue:#74a9e0;
+    --blue-deep:#5f99d8;
+    --blue-soft:#86b5e6;
+    --navy:#284251;
+    --navy-2:#1c2f3a;
+    --accent:#e9f50c;
+    --accent-deep:#d6e000;
+    --ink:#0c1a22;
+    --ink-soft:rgba(12,26,34,.74);
+    --line:rgba(12,26,34,.14);
+    --line-light:rgba(255,255,255,.55);
+    --white:#ffffff;
+    --radius:26px;
+    --radius-sm:16px;
+    --maxw:1240px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --shadow:0 30px 60px -28px rgba(12,26,34,.45);
+    --shadow-soft:0 18px 40px -24px rgba(12,26,34,.40);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+    background:var(--blue);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent);color:var(--ink)}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+  /* ----- Blueprint grid + grain atmosphere ----- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 70%);
+    mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 70%);
+    opacity:.6;
+    pointer-events:none;
+    z-index:0;
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+    opacity:.05;
+    pointer-events:none;
+    z-index:0;
+    mix-blend-mode:overlay;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  /* ----- Buttons ----- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-weight:700;font-size:1rem;letter-spacing:-.01em;
+    padding:1.05rem 1.7rem;border-radius:999px;
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s;
+    white-space:nowrap;line-height:1;
+  }
+  .btn svg{width:1.15em;height:1.15em}
+  .btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 12px 30px -10px rgba(233,245,12,.6)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 36px -10px rgba(233,245,12,.7)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--blue);transform:translateY(-3px)}
+  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-soft)}
+  .btn-light:hover{transform:translateY(-3px)}
+  .btn-lg{padding:1.2rem 2.1rem;font-size:1.06rem}
+
+  /* ----- Nav ----- */
+  .nav-shell{position:sticky;top:0;z-index:50;padding:18px 0;transition:padding .4s var(--ease)}
+  .nav-shell.scrolled{padding:10px 0}
+  .nav{
+    background:var(--navy);
+    border-radius:999px;
+    padding:14px 16px 14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    box-shadow:var(--shadow);
+    transition:border-radius .4s var(--ease);
+  }
+  .nav-shell.scrolled .nav{border-radius:20px}
+  .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:-.02em}
+  .brand .mark{
+    width:30px;height:30px;border-radius:9px;flex:none;
+    background:
+      linear-gradient(135deg,var(--accent),var(--accent-deep));
+    position:relative;overflow:hidden;
+  }
+  .brand .mark::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(#1c2f3a 1.5px,transparent 1.5px),linear-gradient(90deg,#1c2f3a 1.5px,transparent 1.5px);
+    background-size:9px 9px;opacity:.55;
+  }
+  .nav-links{display:flex;gap:6px;align-items:center}
+  .nav-links a{color:rgba(255,255,255,.82);font-weight:500;font-size:.97rem;padding:.55rem .9rem;border-radius:999px;transition:.25s}
+  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .icon-btn{
+    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(255,255,255,.1);color:#fff;transition:.25s
+  }
+  .icon-btn:hover{background:rgba(255,255,255,.2)}
+  .icon-btn svg{width:18px;height:18px}
+  .nav .btn-primary{padding:.85rem 1.4rem;font-size:.97rem}
+  .nav-toggle{display:none;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.12);color:#fff}
+  .nav-toggle span{display:block;width:20px;height:2px;background:#fff;margin:4px auto;border-radius:2px;transition:.3s}
+  .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+  /* ----- Section scaffolding ----- */
+  section{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);background:rgba(255,255,255,.45);
+    border:1px solid var(--line-light);
+    padding:.5rem .9rem;border-radius:999px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ink)}
+  .eyebrow.on-dark{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+  .eyebrow.on-dark::before{background:var(--accent)}
+
+  h1,h2,h3{letter-spacing:-.03em;line-height:1.02;font-weight:800}
+  .h-xl{font-size:clamp(2.8rem,7vw,5.4rem)}
+  .h-lg{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+  .h-md{font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.08}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--ink-soft);font-weight:500;line-height:1.6}
+
+  /* ----- Hero ----- */
+  .hero{padding:64px 0 90px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{margin:26px 0 0}
+  .hero .lead{margin:24px 0 0;max-width:30em}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .stars{color:var(--ink);font-weight:800;letter-spacing:.05em}
+  .stars span{color:#163b22}
+  .hero-trust small{font-size:.95rem;color:var(--ink-soft);font-weight:600}
+  .avatars{display:flex}
+  .avatars i{
+    width:34px;height:34px;border-radius:50%;border:2.5px solid var(--blue);
+    margin-left:-10px;display:block;
+  }
+  .avatars i:first-child{margin-left:0}
+  .a1{background:linear-gradient(135deg,#f6c453,#ec8c3b)}
+  .a2{background:linear-gradient(135deg,#7dd0c0,#3d9d8b)}
+  .a3{background:linear-gradient(135deg,#9db8ff,#5f7fe0)}
+  .a4{background:linear-gradient(135deg,#f29ca6,#d65f74)}
+
+  /* ----- Dashboard mockup ----- */
+  .dash{
+    background:linear-gradient(160deg,#fff,#f4f8fd);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px;position:relative;
+    transform:rotate(1.4deg);
+    transition:transform .6s var(--ease);
+  }
+  .dash:hover{transform:rotate(0deg) translateY(-4px)}
+  .dash::before{
+    content:"";position:absolute;inset:0;border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.8);pointer-events:none
+  }
+  .dash-bar{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+  .dash-bar i{width:11px;height:11px;border-radius:50%;background:#dfe6ee}
+  .dash-bar i:first-child{background:#ff6058}
+  .dash-bar i:nth-child(2){background:#ffbd2e}
+  .dash-bar i:nth-child(3){background:#28c840}
+  .dash-bar small{margin-left:auto;font-size:.72rem;font-weight:700;color:#8a98a8;letter-spacing:.08em;text-transform:uppercase}
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .metric{background:#f5f8fc;border:1px solid #e7eef6;border-radius:14px;padding:12px 13px}
+  .metric label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#92a1b2}
+  .metric .num{font-size:1.32rem;font-weight:800;color:#11202b;letter-spacing:-.02em;margin-top:3px;display:flex;align-items:center;gap:5px}
+  .metric .up{color:#1faa59;font-size:.78rem;font-weight:800}
+  .chart-card{background:#f5f8fc;border:1px solid #e7eef6;border-radius:16px;padding:16px 16px 8px}
+  .chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .chart-head b{font-size:.82rem;color:#11202b}
+  .chart-head .legend{display:flex;gap:10px;font-size:.66rem;font-weight:700;color:#8a98a8}
+  .chart-head .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+  .chart svg{width:100%;height:auto;display:block}
+  .float-badge{
+    position:absolute;right:-14px;bottom:30px;
+    background:var(--accent);color:var(--ink);
+    border-radius:16px;padding:12px 16px;
+    box-shadow:0 16px 30px -12px rgba(233,245,12,.7);
+    transform:rotate(-3deg);
+    font-weight:800;
+  }
+  .float-badge small{display:block;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.7}
+  .float-badge b{font-size:1.3rem}
+
+  /* ----- Logo / industries bar ----- */
+  .bar{padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bar-inner{display:flex;align-items:center;gap:30px;flex-wrap:wrap;justify-content:center}
+  .bar p{font-weight:700;color:var(--ink-soft);font-size:.92rem}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .chip{
+    font-weight:700;font-size:.92rem;color:var(--ink);
+    background:rgba(255,255,255,.4);border:1px solid var(--line-light);
+    padding:.55rem 1.05rem;border-radius:999px
+  }
+
+  /* ----- Generic section paddings ----- */
+  .sec{padding:96px 0}
+  .sec-head{max-width:760px}
+  .sec-head .lead{margin-top:18px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* ----- Problem section ----- */
+  .problem{background:var(--blue-deep)}
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .prob{background:rgba(255,255,255,.4);border:1px solid var(--line-light);border-radius:var(--radius);padding:30px}
+  .prob .x{
+    width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+    background:var(--ink);color:#ff6b6b;margin-bottom:18px;font-weight:800;font-size:1.3rem
+  }
+  .prob h3{font-size:1.2rem;margin-bottom:8px}
+  .prob p{color:var(--ink-soft);font-weight:500;font-size:.98rem}
+
+  /* ----- Process ----- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;counter-reset:s}
+  .step{
+    background:var(--white);border-radius:var(--radius);padding:32px 30px;
+    box-shadow:var(--shadow-soft);position:relative;overflow:hidden;
+    transition:transform .4s var(--ease)
+  }
+  .step:hover{transform:translateY(-6px)}
+  .step::before{
+    counter-increment:s;content:"0" counter(s);
+    position:absolute;top:18px;right:24px;
+    font-size:3.4rem;font-weight:800;color:rgba(12,26,34,.07);letter-spacing:-.04em
+  }
+  .step .ic{width:52px;height:52px;border-radius:15px;background:var(--blue);display:grid;place-items:center;margin-bottom:20px;color:var(--ink)}
+  .step .ic svg{width:26px;height:26px}
+  .step h3{font-size:1.32rem;margin-bottom:10px}
+  .step p{color:var(--ink-soft);font-weight:500}
+  .step.feature{background:var(--ink);color:#fff}
+  .step.feature::before{color:rgba(255,255,255,.08)}
+  .step.feature .ic{background:var(--accent)}
+  .step.feature p{color:rgba(255,255,255,.72)}
+
+  /* ----- Features split ----- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;margin-top:54px}
+  .feat-card{
+    background:rgba(255,255,255,.4);border:1px solid var(--line-light);
+    border-radius:var(--radius);padding:34px;display:flex;flex-direction:column;
+    transition:transform .4s var(--ease),background .3s
+  }
+  .feat-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.55)}
+  .feat-card .ic{width:50px;height:50px;border-radius:14px;background:var(--ink);color:var(--accent);display:grid;place-items:center;margin-bottom:20px}
+  .feat-card .ic svg{width:25px;height:25px}
+  .feat-card h3{font-size:1.45rem;margin-bottom:10px}
+  .feat-card p{color:var(--ink-soft);font-weight:500}
+  .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:54px}
+  .feat-list .row{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.32);border-radius:var(--radius-sm);padding:18px 20px}
+  .feat-list .tick{width:28px;height:28px;flex:none;border-radius:50%;background:var(--ink);color:var(--accent);display:grid;place-items:center;margin-top:2px}
+  .feat-list .tick svg{width:15px;height:15px}
+  .feat-list h4{font-size:1.05rem;margin-bottom:2px}
+  .feat-list p{font-size:.92rem;color:var(--ink-soft);font-weight:500}
+
+  /* ----- Results / stats ----- */
+  .results{background:var(--navy);color:#fff;border-radius:42px;margin:0 18px;overflow:hidden;position:relative}
+  .results::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:60px 60px;pointer-events:none;
+    -webkit-mask-image:radial-gradient(120% 100% at 80% 0%,#000,transparent 75%);
+    mask-image:radial-gradient(120% 100% at 80% 0%,#000,transparent 75%);
+  }
+  .results .inner{padding:90px 60px;position:relative;z-index:2}
+  .results-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+  .results h2{color:#fff}
+  .results-top .lead{color:rgba(255,255,255,.74)}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px}
+  .stat{border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:30px;background:rgba(255,255,255,.04);min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+  .stat .big{font-size:clamp(2.6rem,4vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+  .stat p{color:rgba(255,255,255,.7);font-weight:600;font-size:.98rem}
+  .stat.hl{background:var(--accent);border-color:var(--accent)}
+  .stat.hl .big,.stat.hl p{color:var(--ink)}
+  .stat.hl p{opacity:.8}
+
+  /* ----- Testimonials ----- */
+  .tst-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  .tst-nav{display:flex;gap:10px}
+  .tst-nav button{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:.3s;color:var(--ink)}
+  .tst-nav button:hover{background:var(--ink);color:var(--blue)}
+  .tst-nav button svg{width:20px;height:20px}
+  .tst-viewport{overflow:hidden;margin-top:50px}
+  .tst-track{display:flex;gap:24px;transition:transform .6s var(--ease)}
+  .tst{
+    flex:0 0 calc(50% - 12px);
+    background:rgba(255,255,255,.42);border:1px solid var(--line-light);
+    border-radius:var(--radius);padding:38px;display:flex;flex-direction:column
+  }
+  .tst .quote{font-size:1.22rem;font-weight:600;line-height:1.45;letter-spacing:-.01em;color:var(--ink)}
+  .tst .stars{font-size:.95rem;margin-bottom:18px;color:#163b22}
+  .tst-foot{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .tst-foot .av{width:48px;height:48px;border-radius:50%;flex:none}
+  .tst-foot b{display:block;font-size:1rem}
+  .tst-foot small{color:var(--ink-soft);font-weight:600;font-size:.88rem}
+
+  /* ----- FAQ ----- */
+  .faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+  .faq-list{display:flex;flex-direction:column;gap:12px}
+  .qa{background:rgba(255,255,255,.4);border:1px solid var(--line-light);border-radius:var(--radius-sm);overflow:hidden;transition:background .3s}
+  .qa.open{background:var(--white)}
+  .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 26px;text-align:left;font-weight:700;font-size:1.08rem;color:var(--ink)}
+  .qa .plus{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ink);color:var(--blue);display:grid;place-items:center;transition:.35s var(--ease)}
+  .qa.open .plus{transform:rotate(45deg);background:var(--accent);color:var(--ink)}
+  .qa .plus svg{width:16px;height:16px}
+  .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .qa .ans p{padding:0 26px 24px;color:var(--ink-soft);font-weight:500}
+
+  /* ----- Final CTA ----- */
+  .cta{margin:0 18px 28px;border-radius:42px;background:linear-gradient(150deg,var(--navy),var(--navy-2));color:#fff;overflow:hidden;position:relative}
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+    background-size:60px 60px;
+    -webkit-mask-image:radial-gradient(110% 120% at 20% 10%,#000,transparent 70%);
+    mask-image:radial-gradient(110% 120% at 20% 10%,#000,transparent 70%);
+  }
+  .cta::after{
+    content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,245,12,.22),transparent 65%);
+    right:-120px;top:-140px;pointer-events:none
+  }
+  .cta-inner{padding:84px 60px;position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .cta h2{color:#fff;font-size:clamp(2.2rem,4vw,3.4rem)}
+  .cta .lead{color:rgba(255,255,255,.76);margin-top:18px;max-width:30em}
+  .cta-points{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+  .cta-points span{display:flex;align-items:center;gap:12px;font-weight:600;color:rgba(255,255,255,.9)}
+  .cta-points .t{width:24px;height:24px;flex:none;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center}
+  .cta-points .t svg{width:13px;height:13px}
+  .form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:32px;backdrop-filter:blur(6px)}
+  .form h3{font-size:1.35rem;color:#fff;margin-bottom:6px}
+  .form p.sub{color:rgba(255,255,255,.6);font-size:.92rem;font-weight:500;margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+  .field input,.field select{
+    width:100%;padding:.95rem 1.1rem;border-radius:13px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+    color:#fff;font-family:inherit;font-size:1rem;transition:.25s
+  }
+  .field input::placeholder{color:rgba(255,255,255,.4)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.12)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.1rem center}
+  .field select option{color:#11202b}
+  .form .btn-primary{width:100%;justify-content:center;margin-top:8px}
+  .form .fineprint{text-align:center;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
+  .form-success{display:none;text-align:center;padding:24px 0}
+  .form-success.show{display:block}
+  .form-success .check{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;margin:0 auto 18px}
+  .form-success .check svg{width:32px;height:32px}
+  .form-success h3{color:#fff;margin-bottom:8px}
+  .form-success p{color:rgba(255,255,255,.7);font-weight:500}
+
+  /* ----- Footer ----- */
+  footer{padding:60px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+  .foot-brand .brand{color:var(--ink);margin-bottom:14px}
+  .foot-brand .brand .mark::before{background-image:linear-gradient(#1c2f3a 1.5px,transparent 1.5px),linear-gradient(90deg,#1c2f3a 1.5px,transparent 1.5px)}
+  .foot-brand p{color:var(--ink-soft);font-weight:500;max-width:28em;font-size:.95rem}
+  .foot-col h5{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+  .foot-col a{display:block;color:var(--ink-soft);font-weight:600;padding:6px 0;transition:.2s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:28px;color:var(--ink-soft);font-weight:600;font-size:.9rem}
+
+  /* ----- Reveal animation ----- */
+  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}
+  .reveal[data-d="2"]{transition-delay:.16s}
+  .reveal[data-d="3"]{transition-delay:.24s}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ----- Responsive ----- */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .dash{transform:rotate(0)}
+    .results-top,.cta-inner,.faq-grid{grid-template-columns:1fr;gap:34px}
+    .stat-grid{grid-template-columns:repeat(2,1fr)}
+    .prob-grid,.steps{grid-template-columns:1fr}
+    .split,.feat-list{grid-template-columns:1fr}
+    .tst{flex:0 0 100%}
+    .results .inner,.cta-inner{padding:60px 32px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:680px){
+    .nav-links,.nav .btn-primary,.nav .icon-btn{display:none}
+    .nav-toggle{display:block}
+    .nav{padding:12px 12px 12px 22px}
+    .mobile-menu{display:block}
+    .stat-grid{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .sec{padding:70px 0}
+    .wrap{padding:0 20px}
+    .results,.cta{margin:0 12px}
+  }
+
+  /* ----- Mobile menu ----- */
+  .mobile-menu{
+    display:none;position:fixed;inset:0;z-index:49;
+    background:var(--navy);padding:120px 28px 40px;
+    transform:translateY(-100%);transition:transform .45s var(--ease);
+  }
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{display:block;color:#fff;font-size:1.6rem;font-weight:700;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .mobile-menu .btn{margin-top:28px;width:100%;justify-content:center}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<div class="nav-shell" id="navShell">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#top" class="brand"><span class="mark"></span>Blueprint</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="icon-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.5 8.65 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg>
+        </a>
+        <a href="#book" class="btn btn-primary">Book a free audit</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#results">Results</a>
+  <a href="#faq">FAQ</a>
+  <a href="#book" class="btn btn-primary">Book a free audit</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">Google Ads for local service businesses</span>
+        <h1 class="h-xl reveal" data-d="1">Get more qualified leads without wasting ad spend</h1>
+        <p class="lead reveal" data-d="2">Blueprint builds and manages Google Ads campaigns that put you in front of customers actively searching for your services — so you win booked jobs, not just clicks.</p>
+        <div class="hero-cta reveal" data-d="3">
+          <a href="#book" class="btn btn-primary btn-lg">Book a free audit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#results" class="btn btn-ghost btn-lg">See client results</a>
+        </div>
+        <div class="hero-trust reveal" data-d="3">
+          <div class="avatars"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div>
+          <span class="stars">★★★★★</span>
+          <small>Rated 4.8 by 200+ local businesses across the UK</small>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" data-d="2">
+        <div class="dash">
+          <div class="dash-bar"><i></i><i></i><i></i><small>Campaign performance</small></div>
+          <div class="metrics">
+            <div class="metric"><label>Leads</label><div class="num"><span data-count="1248">0</span><span class="up">▲ 38%</span></div></div>
+            <div class="metric"><label>Cost / lead</label><div class="num"><span>£<span data-count="15">0</span></span></div></div>
+            <div class="metric"><label>Conv. rate</label><div class="num"><span><span data-count="9.2" data-suffix="%">0</span></span></div></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-head">
+              <b>Qualified leads over time</b>
+              <span class="legend"><span><i style="background:#5f99d8"></i>Leads</span><span><i style="background:#e9c20c"></i>Spend</span></span>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
+                <g stroke="#e7eef6" stroke-width="1">
+                  <line x1="0" y1="38" x2="400" y2="38"/><line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="112" x2="400" y2="112"/>
+                </g>
+                <path class="spark spark-spend" d="M5,120 L70,116 L135,108 L200,110 L265,98 L330,96 L395,90" fill="none" stroke="#e9c20c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/>
+                <path class="spark spark-leads" d="M5,128 L70,112 L135,96 L200,84 L265,58 L330,42 L395,22" fill="none" stroke="#5f99d8" stroke-width="3.5" stroke-linecap="round"/>
+                <circle class="dot" cx="395" cy="22" r="5" fill="#5f99d8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="float-badge"><small>Booked jobs</small><b>+312%</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRY BAR ===== -->
+<section class="bar">
+  <div class="wrap">
+    <div class="bar-inner reveal">
+      <p>Trusted by local trades &amp; service businesses:</p>
+      <div class="chips">
+        <span class="chip">Plumbing</span>
+        <span class="chip">Electrical</span>
+        <span class="chip">Roofing</span>
+        <span class="chip">HVAC</span>
+        <span class="chip">Landscaping</span>
+        <span class="chip">Cleaning</span>
+        <span class="chip">Locksmiths</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="sec problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The problem</span>
+      <h2 class="h-lg" style="margin-top:18px">Most local businesses are burning budget on ads that don't convert</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="prob reveal" data-d="1">
+        <div class="x">✕</div>
+        <h3>Clicks, not customers</h3>
+        <p>Generic campaigns attract tyre-kickers and competitors clicking your ads — not people ready to book.</p>
+      </div>
+      <div class="prob reveal" data-d="2">
+        <div class="x">✕</div>
+        <h3>Wasted on the wrong areas</h3>
+        <p>Budget leaks into searches outside your service area, the wrong services, and hours you're not even open.</p>
+      </div>
+      <div class="prob reveal" data-d="3">
+        <div class="x">✕</div>
+        <h3>No idea what's working</h3>
+        <p>Reports full of vanity metrics, but no clear answer to the only question that matters: how many leads did it cost?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How we work</span>
+      <h2 class="h-lg" style="margin-top:18px">A strategic process, not a set-and-forget account</h2>
+      <p class="lead">We treat your ad budget like our own. Every campaign is built on research, structured around your most profitable services, and refined every single week.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal" data-d="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Audit &amp; strategy</h3>
+        <p>We analyse your market, competitors and current spend to find exactly where leads are leaking — and where the opportunity is.</p>
+      </div>
+      <div class="step feature reveal" data-d="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg></div>
+        <h3>Build &amp; launch</h3>
+        <p>We build tightly-targeted campaigns around the services that actually make you money, with conversion tracking on every call and form.</p>
+      </div>
+      <div class="step reveal" data-d="3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M21 8V3h-5"/></svg></div>
+        <h3>Optimise &amp; scale</h3>
+        <p>We track every lead and refine continuously — cutting wasted spend and lowering your cost per lead month after month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES / SERVICES ===== -->
+<section class="sec problem" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Blueprint</span>
+      <h2 class="h-lg" style="margin-top:18px">Reach customers who are ready to buy</h2>
+    </div>
+    <div class="split">
+      <div class="feat-card reveal" data-d="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <h3>Qualified leads only</h3>
+        <p>We target people actively searching for your service in your area — no wasted spend on distant browsers or the wrong jobs. Every pound works toward booked work.</p>
+      </div>
+      <div class="feat-card reveal" data-d="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><rect x="8" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></div>
+        <h3>Transparent reporting</h3>
+        <p>A simple dashboard showing leads, calls and cost per lead — the numbers that move your business. No jargon, no vanity metrics, no smoke and mirrors.</p>
+      </div>
+    </div>
+    <div class="feat-list">
+      <div class="row reveal" data-d="1">
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+        <div><h4>Local market expertise</h4><p>We know how local-service buyers search and what makes them call.</p></div>
+      </div>
+      <div class="row reveal" data-d="2">
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+        <div><h4>Call &amp; form tracking</h4><p>Every enquiry is tracked back to the exact campaign that drove it.</p></div>
+      </div>
+      <div class="row reveal" data-d="1">
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+        <div><h4>A dedicated strategist</h4><p>One expert who knows your business — not a rotating support queue.</p></div>
+      </div>
+      <div class="row reveal" data-d="2">
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+        <div><h4>No long contracts</h4><p>We earn your business every month. Stay because it works, not because you're locked in.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section class="sec" id="results" style="padding-top:40px">
+  <div class="results reveal">
+    <div class="inner">
+      <div class="results-top">
+        <div>
+          <span class="eyebrow on-dark">Client success</span>
+          <h2 class="h-lg" style="margin-top:18px">Real results for local service businesses</h2>
+        </div>
+        <p class="lead">Our Google Ads campaigns deliver measurable growth. Here's what working with Blueprint typically looks like across our client base.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat hl reveal" data-d="1"><div class="big"><span data-count="3" data-suffix="x">0</span></div><p>Average lead increase in 90 days</p></div>
+        <div class="stat reveal" data-d="1"><div class="big"><span data-count="42" data-suffix="%">0</span></div><p>Average cost per lead reduction</p></div>
+        <div class="stat reveal" data-d="2"><div class="big"><span data-count="200" data-suffix="+">0</span></div><p>Local businesses served</p></div>
+        <div class="stat reveal" data-d="3"><div class="big"><span data-count="4" data-suffix="">0</span>.8</div><p>Average client rating</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="sec" style="padding-top:40px">
+  <div class="wrap">
+    <div class="tst-head reveal">
+      <div class="sec-head">
+        <span class="eyebrow">In their words</span>
+        <h2 class="h-lg" style="margin-top:18px">Trusted by owners who needed leads, not excuses</h2>
+      </div>
+      <div class="tst-nav">
+        <button id="tPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="tNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="tst-viewport">
+      <div class="tst-track" id="tTrack">
+        <article class="tst">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Blueprint transformed how we approach Google Ads. Within weeks we saw more qualified leads calling and booking. Their strategy made all the difference to our growth."</p>
+          <div class="tst-foot"><span class="av a1"></span><div><b>James Mitchell</b><small>Mitchell Plumbing &amp; Heating</small></div></div>
+        </article>
+        <article class="tst">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"We were spending money on ads that didn't convert. Blueprint understood our service and targeted the right customers. Our cost per lead dropped significantly."</p>
+          <div class="tst-foot"><span class="av a2"></span><div><b>Sarah Whitfield</b><small>Whitfield Electrical, Manchester</small></div></div>
+        </article>
+        <article class="tst">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Finally an agency that speaks plain English and shows me the numbers that matter. We're booked out weeks ahead and I know exactly where every lead comes from."</p>
+          <div class="tst-foot"><span class="av a3"></span><div><b>David Okafor</b><small>Apex Roofing, Birmingham</small></div></div>
+        </article>
+        <article class="tst">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"The team feels like part of our business. They cut our wasted spend in the first month and the quality of enquiries is night and day. Genuinely the best money we spend."</p>
+          <div class="tst-foot"><span class="av a4"></span><div><b>Emma Harding</b><small>Harding Landscapes, Leeds</small></div></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="sec-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h-lg" style="margin-top:18px">Questions, answered</h2>
+        <p class="lead">Still unsure? Book a free audit and we'll give you straight answers about your specific situation — no obligation.</p>
+        <a href="#book" class="btn btn-ghost" style="margin-top:8px">Book a free audit</a>
+      </div>
+      <div class="faq-list reveal" data-d="1">
+        <div class="qa">
+          <button>How much should I budget for Google Ads?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="ans"><p>It depends on your services and area, but most local businesses we work with start between £750–£2,000/month in ad spend. In your free audit we'll recommend a realistic budget based on what your competitors spend and the leads you want.</p></div>
+        </div>
+        <div class="qa">
+          <button>Am I locked into a long contract?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="ans"><p>No. We work on a rolling monthly basis. We'd rather earn your business with results every month than rely on a lock-in. You can pause or cancel with 30 days' notice.</p></div>
+        </div>
+        <div class="qa">
+          <button>How quickly will I see leads?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="ans"><p>Campaigns can start generating enquiries within days of launch. The first 30–60 days are about gathering data and optimising — that's when cost per lead really starts to drop and quality improves.</p></div>
+        </div>
+        <div class="qa">
+          <button>Which industries do you work with?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="ans"><p>We specialise in local service businesses — plumbers, electricians, roofers, HVAC, landscapers, cleaners, locksmiths and similar trades. That focus is exactly why we get results faster than a generalist agency.</p></div>
+        </div>
+        <div class="qa">
+          <button>What's included in the management fee?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="ans"><p>Strategy, campaign build, conversion tracking setup, ongoing optimisation, call &amp; form tracking, and a dedicated strategist who reports on the metrics that matter. Your ad spend is separate and goes directly to Google.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="sec" id="book" style="padding-bottom:20px">
+  <div class="cta reveal">
+    <div class="cta-inner">
+      <div>
+        <span class="eyebrow on-dark">Free, no-obligation audit</span>
+        <h2 style="margin-top:18px">Let's turn your clicks into customers</h2>
+        <p class="lead">Tell us about your business and we'll send back a free audit showing exactly where you're losing leads — and how we'd fix it. Booked jobs in your first month, not just promises.</p>
+        <div class="cta-points">
+          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>A clear plan tailored to your services &amp; area</span>
+          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>An honest review of your current spend</span>
+          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>No pressure, no jargon, no lock-in</span>
+        </div>
+      </div>
+
+      <div class="form">
+        <form id="auditForm">
+          <h3>Book your free audit</h3>
+          <p class="sub">Takes 60 seconds. We'll be in touch within one working day.</p>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="field">
+            <label for="business">Business name</label>
+            <input type="text" id="business" name="business" placeholder="Smith Plumbing Ltd" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@smithplumbing.co.uk" required />
+          </div>
+          <div class="field">
+            <label for="service">Your service</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Plumbing &amp; heating</option>
+              <option>Electrical</option>
+              <option>Roofing</option>
+              <option>HVAC</option>
+              <option>Landscaping</option>
+              <option>Cleaning</option>
+              <option>Other local service</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Get my free audit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="fineprint">We respect your inbox. No spam, ever.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3>Thanks — you're booked in</h3>
+          <p>We've got your details and one of our strategists will be in touch within one working day with your free audit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><span class="mark"></span>Blueprint</a>
+        <p>Strategic Google Ads management for local service businesses across the UK. More qualified leads, less wasted spend.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+441234567890">+44 1234 567 890</a>
+        <a href="mailto:hello@blueprint.agency">hello@blueprint.agency</a>
+        <a href="#book">Book a free audit</a>
+      </div>
+      <div class="foot-col">
+        <h5>Follow</h5>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Google Reviews</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Blueprint Agency. All rights reserved.</span>
+      <span>Privacy · Terms · Google Premier Partner</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Sticky nav state ----
+  const navShell = document.getElementById('navShell');
+  addEventListener('scroll', () => {
+    navShell.classList.toggle('scrolled', scrollY > 20);
+  });
+
+  // ---- Mobile menu ----
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    toggle.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  // ---- Reveal on scroll ----
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); } });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+  // ---- Count-up stats ----
+  function animateCount(el){
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400; const start = performance.now();
+    const isInt = Number.isInteger(target);
+    function tick(now){
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      el.textContent = (isInt ? Math.round(val) : val.toFixed(1)).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = (isInt ? Math.round(target) : target).toLocaleString() + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+  // ---- Animate hero chart line ----
+  const leadsPath = document.querySelector('.spark-leads');
+  if (leadsPath){
+    const len = leadsPath.getTotalLength();
+    leadsPath.style.strokeDasharray = len;
+    leadsPath.style.strokeDashoffset = len;
+    leadsPath.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(.22,.61,.36,1) .3s';
+    requestAnimationFrame(() => { leadsPath.style.strokeDashoffset = 0; });
+  }
+
+  // ---- Testimonial carousel ----
+  const track = document.getElementById('tTrack');
+  const slides = track.children.length;
+  let idx = 0;
+  function perView(){ return window.innerWidth <= 980 ? 1 : 2; }
+  function maxIdx(){ return Math.max(0, slides - perView()); }
+  function go(){
+    idx = Math.min(idx, maxIdx());
+    const slideW = track.children[0].getBoundingClientRect().width + 24;
+    track.style.transform = `translateX(${-idx * slideW}px)`;
+  }
+  document.getElementById('tNext').addEventListener('click', () => { idx = idx >= maxIdx() ? 0 : idx + 1; go(); });
+  document.getElementById('tPrev').addEventListener('click', () => { idx = idx <= 0 ? maxIdx() : idx - 1; go(); });
+  let auto = setInterval(() => { idx = idx >= maxIdx() ? 0 : idx + 1; go(); }, 5500);
+  track.parentElement.addEventListener('mouseenter', () => clearInterval(auto));
+  addEventListener('resize', go);
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.qa button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qa = btn.parentElement;
+      const ans = qa.querySelector('.ans');
+      const open = qa.classList.contains('open');
+      document.querySelectorAll('.qa').forEach(q => { q.classList.remove('open'); q.querySelector('.ans').style.maxHeight = null; });
+      if (!open){ qa.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+    });
+  });
+
+  // ---- Form submit ----
+  document.getElementById('auditForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('auditForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  });
+</script>
+</body>
+</html>
