@@ -16,6 +16,8 @@
     --blue-soft:#86b5e6;
     --navy:#284251;
     --navy-2:#1c2f3a;
+    --dark:#0a0e1a;
+    --dark-2:#11162a;
     --accent:#e9f50c;
     --accent-deep:#d6e000;
     --ink:#0c1a22;
@@ -102,28 +104,12 @@
     transition:border-radius .4s var(--ease);
   }
   .nav-shell.scrolled .nav{border-radius:20px}
-  .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:-.02em}
-  .brand .mark{
-    width:30px;height:30px;border-radius:9px;flex:none;
-    background:
-      linear-gradient(135deg,var(--accent),var(--accent-deep));
-    position:relative;overflow:hidden;
-  }
-  .brand .mark::before{
-    content:"";position:absolute;inset:0;
-    background-image:linear-gradient(#1c2f3a 1.5px,transparent 1.5px),linear-gradient(90deg,#1c2f3a 1.5px,transparent 1.5px);
-    background-size:9px 9px;opacity:.55;
-  }
+  .brand{display:inline-flex;align-items:flex-end;gap:3px;font-weight:800;font-size:1.5rem;color:#fff;letter-spacing:-.03em;line-height:1}
+  .brand .dot{width:9px;height:9px;background:var(--blue-deep);display:block;margin-bottom:3px;border-radius:1px}
   .nav-links{display:flex;gap:6px;align-items:center}
   .nav-links a{color:rgba(255,255,255,.82);font-weight:500;font-size:.97rem;padding:.55rem .9rem;border-radius:999px;transition:.25s}
   .nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
   .nav-right{display:flex;align-items:center;gap:10px}
-  .icon-btn{
-    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
-    background:rgba(255,255,255,.1);color:#fff;transition:.25s
-  }
-  .icon-btn:hover{background:rgba(255,255,255,.2)}
-  .icon-btn svg{width:18px;height:18px}
   .nav .btn-primary{padding:.85rem 1.4rem;font-size:.97rem}
   .nav-toggle{display:none;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.12);color:#fff}
   .nav-toggle span{display:block;width:20px;height:2px;background:#fff;margin:4px auto;border-radius:2px;transition:.3s}
@@ -212,13 +198,16 @@
   .sec-head .lead{margin-top:18px}
   .center{text-align:center;margin-left:auto;margin-right:auto}
 
+  /* ----- Section backgrounds ----- */
+  .bg-deep{background:var(--blue-deep)}
+  .section-white{background:#fff}
+
   /* ----- Problem section ----- */
-  .problem{background:var(--blue-deep)}
   .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
-  .prob{background:rgba(255,255,255,.4);border:1px solid var(--line-light);border-radius:var(--radius);padding:30px}
+  .prob{background:#fff;border:1px solid rgba(12,26,34,.10);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-soft)}
   .prob .x{
     width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
-    background:var(--ink);color:#ff6b6b;margin-bottom:18px;font-weight:800;font-size:1.3rem
+    background:var(--dark);color:#ff6b6b;margin-bottom:18px;font-weight:800;font-size:1.3rem
   }
   .prob h3{font-size:1.2rem;margin-bottom:8px}
   .prob p{color:var(--ink-soft);font-weight:500;font-size:.98rem}
@@ -242,7 +231,7 @@
   .step p{color:var(--ink-soft);font-weight:500}
   .step.feature{background:var(--ink);color:#fff}
   .step.feature::before{color:rgba(255,255,255,.08)}
-  .step.feature .ic{background:var(--accent)}
+  .step.feature .ic{background:var(--blue)}
   .step.feature p{color:rgba(255,255,255,.72)}
 
   /* ----- Features split ----- */
@@ -253,13 +242,13 @@
     transition:transform .4s var(--ease),background .3s
   }
   .feat-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.55)}
-  .feat-card .ic{width:50px;height:50px;border-radius:14px;background:var(--ink);color:var(--accent);display:grid;place-items:center;margin-bottom:20px}
+  .feat-card .ic{width:50px;height:50px;border-radius:14px;background:var(--ink);color:var(--blue);display:grid;place-items:center;margin-bottom:20px}
   .feat-card .ic svg{width:25px;height:25px}
   .feat-card h3{font-size:1.45rem;margin-bottom:10px}
   .feat-card p{color:var(--ink-soft);font-weight:500}
   .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:54px}
   .feat-list .row{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.32);border-radius:var(--radius-sm);padding:18px 20px}
-  .feat-list .tick{width:28px;height:28px;flex:none;border-radius:50%;background:var(--ink);color:var(--accent);display:grid;place-items:center;margin-top:2px}
+  .feat-list .tick{width:28px;height:28px;flex:none;border-radius:50%;background:var(--ink);color:var(--blue);display:grid;place-items:center;margin-top:2px}
   .feat-list .tick svg{width:15px;height:15px}
   .feat-list h4{font-size:1.05rem;margin-bottom:2px}
   .feat-list p{font-size:.92rem;color:var(--ink-soft);font-weight:500}
@@ -271,13 +260,13 @@
   .qa.open{background:var(--white)}
   .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 26px;text-align:left;font-weight:700;font-size:1.08rem;color:var(--ink)}
   .qa .plus{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ink);color:var(--blue);display:grid;place-items:center;transition:.35s var(--ease)}
-  .qa.open .plus{transform:rotate(45deg);background:var(--accent);color:var(--ink)}
+  .qa.open .plus{transform:rotate(45deg);background:var(--blue);color:var(--ink)}
   .qa .plus svg{width:16px;height:16px}
   .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
   .qa .ans p{padding:0 26px 24px;color:var(--ink-soft);font-weight:500}
 
   /* ----- Final CTA ----- */
-  .cta{margin:0 18px 28px;border-radius:42px;background:linear-gradient(150deg,var(--navy),var(--navy-2));color:#fff;overflow:hidden;position:relative}
+  .cta{margin:0 18px 28px;border-radius:42px;background:linear-gradient(150deg,var(--dark-2),var(--dark));color:#fff;overflow:hidden;position:relative}
   .cta::before{
     content:"";position:absolute;inset:0;
     background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
@@ -287,7 +276,7 @@
   }
   .cta::after{
     content:"";position:absolute;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,rgba(233,245,12,.22),transparent 65%);
+    background:radial-gradient(circle,rgba(116,169,224,.22),transparent 65%);
     right:-120px;top:-140px;pointer-events:none
   }
   .cta-inner{padding:84px 60px;position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
@@ -295,7 +284,7 @@
   .cta .lead{color:rgba(255,255,255,.76);margin-top:18px;max-width:30em}
   .cta-points{display:flex;flex-direction:column;gap:12px;margin-top:28px}
   .cta-points span{display:flex;align-items:center;gap:12px;font-weight:600;color:rgba(255,255,255,.9)}
-  .cta-points .t{width:24px;height:24px;flex:none;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center}
+  .cta-points .t{width:24px;height:24px;flex:none;border-radius:50%;background:var(--blue);color:var(--ink);display:grid;place-items:center}
   .cta-points .t svg{width:13px;height:13px}
   .form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:32px;backdrop-filter:blur(6px)}
   .form h3{font-size:1.35rem;color:#fff;margin-bottom:6px}
@@ -308,7 +297,7 @@
     color:#fff;font-family:inherit;font-size:1rem;transition:.25s
   }
   .field input::placeholder{color:rgba(255,255,255,.4)}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.12)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,.12)}
   .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.1rem center}
   .field select option{color:#11202b}
   .form .btn-primary{width:100%;justify-content:center;margin-top:8px}
@@ -321,15 +310,14 @@
   .form-success p{color:rgba(255,255,255,.7);font-weight:500}
 
   /* ----- Footer ----- */
-  footer{padding:60px 0 40px}
-  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid var(--line)}
-  .foot-brand .brand{color:var(--ink);margin-bottom:14px}
-  .foot-brand .brand .mark::before{background-image:linear-gradient(#1c2f3a 1.5px,transparent 1.5px),linear-gradient(90deg,#1c2f3a 1.5px,transparent 1.5px)}
-  .foot-brand p{color:var(--ink-soft);font-weight:500;max-width:28em;font-size:.95rem}
-  .foot-col h5{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
-  .foot-col a{display:block;color:var(--ink-soft);font-weight:600;padding:6px 0;transition:.2s}
-  .foot-col a:hover{color:var(--ink)}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:28px;color:var(--ink-soft);font-weight:600;font-size:.9rem}
+  footer{background:var(--dark);color:#fff;padding:84px 0 40px;position:relative;z-index:2}
+  .foot-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:520px;padding-bottom:56px}
+  .foot-col h5{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;color:#fff}
+  .foot-col a{display:block;color:rgba(255,255,255,.55);font-weight:600;padding:7px 0;transition:.2s}
+  .foot-col a:hover{color:#fff}
+  .foot-wordmark{display:flex;align-items:flex-end;gap:.04em;font-weight:800;font-size:clamp(3.2rem,12vw,8.5rem);letter-spacing:-.045em;line-height:.85;color:#fff;padding:52px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
+  .foot-wordmark .dot{width:.16em;height:.16em;background:var(--blue-deep);display:block;margin-bottom:.12em;border-radius:3px;flex:none}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-weight:600;font-size:.9rem}
 
   /* ----- Reveal animation ----- */
   .reveal{opacity:1;transform:none}
@@ -351,17 +339,15 @@
     .prob-grid,.steps{grid-template-columns:1fr}
     .split,.feat-list{grid-template-columns:1fr}
     .cta-inner{padding:60px 32px}
-    .foot-grid{grid-template-columns:1fr 1fr}
   }
   @media(max-width:680px){
-    .nav-links,.nav .btn-primary,.nav .icon-btn{display:none}
+    .nav-links,.nav .btn-primary{display:none}
     .nav-toggle{display:block}
     .nav{padding:12px 12px 12px 22px}
     .mobile-menu{display:block}
-    .foot-grid{grid-template-columns:1fr}
     .sec{padding:70px 0}
     .wrap{padding:0 20px}
-    .results,.cta{margin:0 12px}
+    .cta{margin:0 12px}
   }
 
   /* ----- Mobile menu ----- */
@@ -381,16 +367,13 @@
 <div class="nav-shell" id="navShell">
   <div class="wrap">
     <nav class="nav">
-      <a href="#top" class="brand"><span class="mark"></span>Blueprint</a>
+      <a href="#top" class="brand">Blueprint<span class="dot"></span></a>
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-right">
-        <a href="#" class="icon-btn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.5 8.65 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg>
-        </a>
         <a href="#book" class="btn btn-primary">Book a free audit</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -471,7 +454,7 @@
 </section>
 
 <!-- ===== PROBLEM ===== -->
-<section class="sec problem">
+<section class="sec section-white">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The problem</span>
@@ -526,7 +509,7 @@
 </section>
 
 <!-- ===== FEATURES / SERVICES ===== -->
-<section class="sec problem" id="services">
+<section class="sec bg-deep" id="services">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Why Blueprint</span>
@@ -663,30 +646,22 @@
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="#top" class="brand"><span class="mark"></span>Blueprint</a>
-        <p>Strategic Google Ads management for local service businesses across the UK. More qualified leads, less wasted spend.</p>
-      </div>
+    <div class="foot-top">
       <div class="foot-col">
         <h5>Company</h5>
+        <a href="#top">Home</a>
         <a href="#services">Services</a>
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="foot-col">
-        <h5>Contact</h5>
-        <a href="tel:+441234567890">+44 1234 567 890</a>
-        <a href="mailto:hello@blueprint.agency">hello@blueprint.agency</a>
-        <a href="#book">Book a free audit</a>
-      </div>
-      <div class="foot-col">
-        <h5>Follow</h5>
-        <a href="#">LinkedIn</a>
-        <a href="#">Instagram</a>
-        <a href="#">Google Reviews</a>
+        <h5>Support</h5>
+        <a href="#book">Contact</a>
+        <a href="mailto:hello@blueprint.agency">Email us</a>
+        <a href="tel:+441234567890">Call us</a>
       </div>
     </div>
+    <a href="#top" class="foot-wordmark">Blueprint<span class="dot"></span></a>
     <div class="foot-bottom">
       <span>© 2026 Blueprint Agency. All rights reserved.</span>
       <span>Privacy · Terms · Google Premier Partner</span>
