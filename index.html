@@ -23,8 +23,6 @@
     --ink-soft:rgba(10,14,26,.92);
     --hair:#E4E5E8;
     --hair-blue:rgba(0,88,246,.16);
-    --font:"Inter","Helvetica Neue",Arial,sans-serif;
-    --font-display:"Inter","Helvetica Neue",Arial,sans-serif;
     --maxw:1240px;
     --ease:cubic-bezier(.22,.61,.36,1);
     --shadow:0 30px 70px -34px rgba(10,14,26,.34);
@@ -37,7 +35,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    font-family:var(--font);
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
     background:var(--grey);
     color:var(--ink);
     line-height:1.6;
@@ -53,9 +51,9 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
 
   /* ---------- Typography ---------- */
-  .display{font-family:var(--font-display);font-weight:500;letter-spacing:-.025em;line-height:.98}
-  .h-hero{font-size:clamp(3.2rem,8.4vw,7.2rem)}
-  .h-sec{font-size:clamp(2.5rem,6vw,5.2rem)}
+  .display{font-family:"Inter","Helvetica Neue",Arial,sans-serif;font-weight:500;letter-spacing:-.025em;line-height:1.0}
+  .h-hero{font-size:clamp(2.7rem,5.6vw,4.8rem)}
+  .h-sec{font-size:clamp(2rem,4vw,3.4rem)}
   .eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt)}
   .lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--ink-soft);font-weight:400;line-height:1.7;max-width:34em}
   .cobalt{color:var(--cobalt)}
@@ -125,14 +123,13 @@
 
   /* ---------- Process (editorial line-grid) ---------- */
   .proc-head{position:relative}
-  .deco-dots{position:absolute;top:0;right:0;width:108px;height:84px;
-    background-image:radial-gradient(var(--cobalt) 1.4px,transparent 1.4px);background-size:22px 22px;opacity:.28}
-  .deco-line{position:absolute;top:-30px;right:150px;width:380px;height:1px;background:var(--hair-blue);transform:rotate(-32deg);transform-origin:right;opacity:.7}
+  .deco-dots{position:absolute;top:34px;right:0;width:108px;height:84px;
+    background-image:radial-gradient(var(--cobalt) 1.4px,transparent 1.4px);background-size:22px 22px;opacity:.3;pointer-events:none}
   .steps{margin-top:60px;border:1px solid var(--hair-blue);border-radius:6px;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden}
   .step{padding:44px 40px 48px;border-left:1px solid var(--hair-blue);position:relative}
   .step:first-child{border-left:none}
   .step-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:30px}
-  .step-num{font-family:var(--font-display);font-weight:400;font-size:3.6rem;letter-spacing:-.03em;color:var(--cobalt);line-height:1}
+  .step-num{font-family:"Inter","Helvetica Neue",Arial,sans-serif;font-weight:400;font-size:3.2rem;letter-spacing:-.03em;color:var(--cobalt);line-height:1}
   .step-ic{color:var(--cobalt)}
   .step-ic svg{width:34px;height:34px}
   .step h3{font-size:1.32rem;font-weight:500;color:var(--cobalt);letter-spacing:-.015em}
@@ -202,7 +199,7 @@
   .foot-col h5{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;color:#fff}
   .foot-col a{display:block;color:rgba(255,255,255,.55);font-weight:600;padding:7px 0;transition:.2s}
   .foot-col a:hover{color:#fff}
-  .foot-wordmark{display:flex;align-items:flex-end;gap:.04em;font-family:var(--font-display);font-weight:800;font-size:clamp(3.2rem,12vw,8.5rem);letter-spacing:-.045em;line-height:.85;color:#fff;padding:52px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
+  .foot-wordmark{display:flex;align-items:flex-end;gap:.04em;font-family:"Inter","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:clamp(3rem,10vw,7rem);letter-spacing:-.045em;line-height:.85;color:#fff;padding:52px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
   .foot-wordmark .dot{width:.16em;height:.16em;background:var(--foot-dot);display:block;margin-bottom:.12em;border-radius:3px;flex:none}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-weight:600;font-size:.9rem}
 
@@ -226,6 +223,7 @@
     .cta-inner{padding:48px 32px}
     .row-item{grid-template-columns:1fr;gap:8px;padding:26px 30px}
     .sec{padding:84px 0}
+    .deco-dots,.faq-deco{display:none}
   }
   @media(max-width:680px){
     .nav-links,.nav .btn-yellow{display:none}
@@ -233,7 +231,6 @@
     .mobile-menu{display:block}
     .wrap{padding:0 20px}
     .foot-top{grid-template-columns:1fr 1fr}
-    .deco-line,.deco-dots,.faq-deco{display:none}
   }
 </style>
 </head>
@@ -322,8 +319,8 @@
 <!-- ===== PROCESS ===== -->
 <section class="sec" id="process">
   <div class="wrap">
+    <span class="deco-dots" aria-hidden="true"></span>
     <div class="sec-head proc-head reveal">
-      <span class="deco-dots"></span><span class="deco-line"></span>
       <span class="eyebrow">How we work</span>
       <h2 class="display h-sec cobalt" style="margin-top:18px">We treat every pound like it's our own</h2>
       <p class="lead">Most agencies set up your account and leave it running. We don't. We build your campaigns on real research, point them at the work that pays best, and sharpen them every week — like a partner with skin in your growth.</p>
@@ -434,7 +431,7 @@
       <div class="cta-inner">
         <div class="cta-left">
           <span class="eyebrow">Free, no-obligation audit</span>
-          <h2 class="display h-sec" style="margin-top:16px;font-size:clamp(2.4rem,4.8vw,4.4rem)">Let's turn searches into booked jobs</h2>
+          <h2 class="display h-sec" style="margin-top:16px">Let's turn searches into booked jobs</h2>
           <p class="lead">Tell us a little about your business and we'll send back a free audit: where you're losing work today, and exactly how we'd fix it. No pressure — just a clear plan you can use, whether you hire us or not.</p>
           <div class="cta-points">
             <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>A clear growth plan for your services and area</span>
