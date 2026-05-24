@@ -4,361 +4,240 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>document.documentElement.classList.add('js');</script>
-<title>Blueprint — Your next customer is already searching</title>
-<meta name="description" content="Blueprint helps local service businesses win more work from Google. We build and run ads that turn local searches into booked jobs — and we treat your budget like our own." />
+<title>Blueprint — Where better revenue gets built</title>
+<meta name="description" content="Blueprint helps local service businesses grow revenue with sharper marketing, smarter technology, and a team that understands. Book a free, no-obligation audit." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --blue:#74a9e0;
-    --blue-deep:#5f99d8;
-    --blue-soft:#86b5e6;
-    --navy:#284251;
-    --navy-2:#1c2f3a;
-    --dark:#0a0e1a;
-    --dark-2:#11162a;
-    --accent:#e9f50c;
-    --accent-deep:#d6e000;
-    --ink:#0c1a22;
-    --ink-soft:rgba(12,26,34,.74);
-    --line:rgba(12,26,34,.14);
-    --line-light:rgba(255,255,255,.55);
-    --white:#ffffff;
-    --radius:26px;
-    --radius-sm:16px;
+    --cobalt:#0058F6;
+    --cobalt-dark:#0045c8;
+    --yellow:#EBF702;
+    --navy:#0A0E1A;
+    --teal:#1C3540;
+    --cream:#FEFCE7;
+    --grey:#F1F1F1;
+    --white:#FEFFFF;
+    --ink:#0A0E1A;
+    --ink-soft:rgba(10,14,26,.84);
+    --hair:#E4E5E8;
+    --hair-blue:rgba(0,88,246,.16);
+    --font:"Inter","Helvetica Neue",Arial,sans-serif;
+    --font-display:"Neue Haas Grotesk Display Pro","Neue Haas Grotesk Display","Helvetica Neue","Inter",Arial,sans-serif;
     --maxw:1240px;
     --ease:cubic-bezier(.22,.61,.36,1);
-    --shadow:0 30px 60px -28px rgba(12,26,34,.45);
-    --shadow-soft:0 18px 40px -24px rgba(12,26,34,.40);
+    --shadow:0 30px 70px -34px rgba(10,14,26,.34);
+    --shadow-soft:0 18px 44px -28px rgba(10,14,26,.26);
+    /* footer (kept identical to previous build) */
+    --foot-bg:#0A0E1A;
+    --foot-dot:#5f99d8;
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-    background:var(--blue);
+    font-family:var(--font);
+    background:var(--grey);
     color:var(--ink);
-    line-height:1.55;
+    line-height:1.6;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
   }
-  ::selection{background:var(--accent);color:var(--ink)}
-  img{max-width:100%;display:block}
+  ::selection{background:var(--cobalt);color:#fff}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none;background:none}
+  img{max-width:100%;display:block}
 
-  /* ----- Blueprint grid + grain atmosphere ----- */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);
-    background-size:64px 64px;
-    -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 70%);
-    mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 70%);
-    opacity:.6;
-    pointer-events:none;
-    z-index:0;
-  }
-  body::after{
-    content:"";
-    position:fixed;inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
-    opacity:.05;
-    pointer-events:none;
-    z-index:0;
-    mix-blend-mode:overlay;
-  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  /* ---------- Typography ---------- */
+  .display{font-family:var(--font-display);font-weight:500;letter-spacing:-.025em;line-height:.98}
+  .h-hero{font-size:clamp(3.2rem,8.4vw,7.2rem)}
+  .h-sec{font-size:clamp(2.5rem,6vw,5.2rem)}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt)}
+  .lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--ink-soft);font-weight:400;line-height:1.7;max-width:34em}
+  .cobalt{color:var(--cobalt)}
+  .sec-head{max-width:900px}
+  .sec-head .lead{margin-top:22px}
 
-  /* ----- Buttons ----- */
-  .btn{
-    display:inline-flex;align-items:center;gap:.6em;
-    font-weight:700;font-size:1rem;letter-spacing:-.01em;
-    padding:1.05rem 1.7rem;border-radius:999px;
-    transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s;
-    white-space:nowrap;line-height:1;
-  }
-  .btn svg{width:1.15em;height:1.15em}
-  .btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 12px 30px -10px rgba(233,245,12,.6)}
-  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 36px -10px rgba(233,245,12,.7)}
-  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
-  .btn-ghost:hover{background:var(--ink);color:var(--blue);transform:translateY(-3px)}
-  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-soft)}
-  .btn-light:hover{transform:translateY(-3px)}
-  .btn-lg{padding:1.2rem 2.1rem;font-size:1.06rem}
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:600;font-size:1rem;padding:1rem 1.55rem;border-radius:13px;line-height:1;transition:transform .3s var(--ease),background .25s,color .25s,box-shadow .3s var(--ease);white-space:nowrap}
+  .btn svg{width:1.05em;height:1.05em;flex:none}
+  .btn-cobalt{background:var(--cobalt);color:#fff;box-shadow:0 14px 30px -14px rgba(0,88,246,.7)}
+  .btn-cobalt:hover{background:var(--cobalt-dark);transform:translateY(-2px)}
+  .btn-yellow{background:var(--yellow);color:var(--navy);font-weight:600}
+  .btn-yellow:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(235,247,2,.8)}
+  .btn-white{background:var(--white);color:var(--cobalt);border:1px solid var(--hair)}
+  .btn-white:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+  .btn-outline{background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt)}
+  .btn-outline:hover{background:var(--cobalt);color:#fff;transform:translateY(-2px)}
+  .btn-lg{padding:1.15rem 1.9rem;font-size:1.05rem}
 
-  /* ----- Nav ----- */
+  /* ---------- Nav ---------- */
   .nav-shell{position:sticky;top:0;z-index:50;padding:18px 0;transition:padding .4s var(--ease)}
   .nav-shell.scrolled{padding:10px 0}
-  .nav{
-    background:var(--navy);
-    border-radius:999px;
-    padding:14px 16px 14px 28px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px;
-    box-shadow:var(--shadow);
-    transition:border-radius .4s var(--ease);
-  }
-  .nav-shell.scrolled .nav{border-radius:20px}
-  .brand{display:inline-flex;align-items:flex-end;gap:3px;font-weight:800;font-size:1.5rem;color:#fff;letter-spacing:-.03em;line-height:1}
-  .brand .dot{width:9px;height:9px;background:var(--blue-deep);display:block;margin-bottom:3px;border-radius:1px}
-  .nav-links{display:flex;gap:6px;align-items:center}
-  .nav-links a{color:rgba(255,255,255,.82);font-weight:500;font-size:.97rem;padding:.55rem .9rem;border-radius:999px;transition:.25s}
-  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
+  .nav{background:var(--navy);border-radius:18px;padding:14px 16px 14px 26px;display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:var(--shadow)}
+  .brand{display:inline-flex;align-items:flex-end;gap:3px;font-weight:800;font-size:1.45rem;color:#fff;letter-spacing:-.03em;line-height:1}
+  .brand .dot{width:9px;height:9px;background:var(--cobalt);display:block;margin-bottom:3px;border-radius:2px}
+  .nav-links{display:flex;gap:4px;align-items:center}
+  .nav-links a{color:rgba(255,255,255,.78);font-weight:500;font-size:.96rem;padding:.55rem .95rem;border-radius:10px;transition:.25s}
+  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
   .nav-right{display:flex;align-items:center;gap:10px}
-  .nav .btn-primary{padding:.85rem 1.4rem;font-size:.97rem}
-  .nav-toggle{display:none;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.12);color:#fff}
+  .nav .btn{padding:.82rem 1.35rem;font-size:.95rem;border-radius:11px}
+  .nav-toggle{display:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.1)}
   .nav-toggle span{display:block;width:20px;height:2px;background:#fff;margin:4px auto;border-radius:2px;transition:.3s}
   .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
   .nav-toggle.open span:nth-child(2){opacity:0}
   .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-  /* ----- Section scaffolding ----- */
+  .mobile-menu{display:none;position:fixed;inset:0;z-index:49;background:var(--navy);padding:120px 32px 40px;transform:translateY(-100%);transition:transform .45s var(--ease)}
+  .mobile-menu.open{transform:none}
+  .mobile-menu a{display:block;color:#fff;font-size:1.6rem;font-weight:700;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .mobile-menu .btn{margin-top:28px;width:100%;justify-content:center}
+
+  /* ---------- Sections ---------- */
   section{position:relative;z-index:2}
-  .eyebrow{
-    display:inline-block;
-    font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--ink);
-  }
-  .eyebrow.on-dark{color:#fff}
+  .sec{padding:120px 0}
+  .sec-sm{padding:40px 0}
 
-  h1,h2,h3{letter-spacing:-.03em;line-height:1.02;font-weight:800}
-  .h-xl{font-size:clamp(2.8rem,7vw,5.4rem)}
-  .h-lg{font-size:clamp(2.2rem,4.6vw,3.6rem)}
-  .h-md{font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.08}
-  .lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--ink-soft);font-weight:500;line-height:1.6}
+  /* ---------- Hero ---------- */
+  .hero{padding:60px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+  .hero h1{margin:24px 0 0;color:var(--cobalt)}
+  .hero .lead{margin-top:26px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .hero-trust{display:flex;align-items:center;gap:10px;margin-top:30px;color:var(--ink-soft);font-weight:600;font-size:.95rem}
+  .hero-trust svg{width:18px;height:18px;color:var(--cobalt);flex:none}
 
-  /* ----- Hero ----- */
-  .hero{padding:64px 0 90px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .hero h1{margin:26px 0 0}
-  .hero .lead{margin:24px 0 0;max-width:30em}
-  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .hero-media{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(165deg,#a4c3ef,#eef4fc);box-shadow:var(--shadow)}
+  .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
 
-  /* ----- Dashboard mockup ----- */
-  .dash{
-    background:linear-gradient(160deg,#fff,#f4f8fd);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:20px;position:relative;
-    transform:rotate(1.4deg);
-    transition:transform .6s var(--ease);
-  }
-  .dash:hover{transform:rotate(0deg) translateY(-4px)}
-  .dash::before{
-    content:"";position:absolute;inset:0;border-radius:var(--radius);
-    border:1px solid rgba(255,255,255,.8);pointer-events:none
-  }
-  .dash-bar{display:flex;align-items:center;gap:6px;margin-bottom:16px}
-  .dash-bar i{width:11px;height:11px;border-radius:50%;background:#dfe6ee}
-  .dash-bar i:first-child{background:#ff6058}
-  .dash-bar i:nth-child(2){background:#ffbd2e}
-  .dash-bar i:nth-child(3){background:#28c840}
-  .dash-bar small{margin-left:auto;font-size:.72rem;font-weight:700;color:#8a98a8;letter-spacing:.08em;text-transform:uppercase}
-  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-  .metric{background:#f5f8fc;border:1px solid #e7eef6;border-radius:14px;padding:12px 13px}
-  .metric label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#92a1b2}
-  .metric .num{font-size:1.32rem;font-weight:800;color:#11202b;letter-spacing:-.02em;margin-top:3px;display:flex;align-items:center;gap:5px}
-  .metric .up{color:#1faa59;font-size:.78rem;font-weight:800}
-  .chart-card{background:#f5f8fc;border:1px solid #e7eef6;border-radius:16px;padding:16px 16px 8px}
-  .chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-  .chart-head b{font-size:.82rem;color:#11202b}
-  .chart-head .legend{display:flex;gap:10px;font-size:.66rem;font-weight:700;color:#8a98a8}
-  .chart-head .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
-  .chart svg{width:100%;height:auto;display:block}
-  .float-badge{
-    position:absolute;right:-14px;bottom:30px;
-    background:var(--accent);color:var(--ink);
-    border-radius:16px;padding:12px 16px;
-    box-shadow:0 16px 30px -12px rgba(233,245,12,.7);
-    transform:rotate(-3deg);
-    font-weight:800;
-  }
-  .float-badge small{display:block;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.7}
-  .float-badge b{font-size:1.3rem}
+  /* ---------- Problem ---------- */
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+  .card{background:var(--white);border:1px solid var(--hair);border-radius:20px;padding:34px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-soft)}
+  .card .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--grey);color:var(--cobalt);margin-bottom:22px}
+  .card .ic svg{width:24px;height:24px}
+  .card h3{font-size:1.32rem;font-weight:600;letter-spacing:-.015em;margin-bottom:10px}
+  .card p{color:var(--ink-soft);font-weight:500;font-size:.98rem}
 
-  /* ----- Logo / industries bar ----- */
-  .bar{padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .bar-inner{display:flex;align-items:center;gap:30px;flex-wrap:wrap;justify-content:center}
-  .bar p{font-weight:700;color:var(--ink-soft);font-size:.92rem}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .chip{
-    font-weight:700;font-size:.92rem;color:var(--ink);
-    background:rgba(255,255,255,.4);border:1px solid var(--line-light);
-    padding:.55rem 1.05rem;border-radius:999px
-  }
+  /* ---------- Process (editorial line-grid) ---------- */
+  .proc-head{position:relative}
+  .deco-dots{position:absolute;top:0;right:0;width:108px;height:84px;
+    background-image:radial-gradient(var(--cobalt) 1.4px,transparent 1.4px);background-size:22px 22px;opacity:.28}
+  .deco-line{position:absolute;top:-30px;right:150px;width:380px;height:1px;background:var(--hair-blue);transform:rotate(-32deg);transform-origin:right;opacity:.7}
+  .steps{margin-top:60px;border:1px solid var(--hair-blue);border-radius:6px;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden}
+  .step{padding:44px 40px 48px;border-left:1px solid var(--hair-blue);position:relative}
+  .step:first-child{border-left:none}
+  .step-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:30px}
+  .step-num{font-family:var(--font-display);font-weight:400;font-size:3.6rem;letter-spacing:-.03em;color:var(--cobalt);line-height:1}
+  .step-ic{color:var(--cobalt)}
+  .step-ic svg{width:34px;height:34px}
+  .step h3{font-size:1.32rem;font-weight:500;color:var(--cobalt);letter-spacing:-.015em}
+  .step .uline{width:46px;height:2px;background:var(--cobalt);margin:14px 0 18px;opacity:.5}
+  .step p{color:var(--ink-soft);font-weight:500;font-size:.96rem;max-width:24em}
 
-  /* ----- Generic section paddings ----- */
-  .sec{padding:96px 0}
-  .sec-head{max-width:760px}
-  .sec-head .lead{margin-top:18px}
-  .center{text-align:center;margin-left:auto;margin-right:auto}
+  /* ---------- Why Blueprint (rows) ---------- */
+  .why-title .navy{color:var(--navy)}
+  .why-title .cobalt{color:var(--cobalt)}
+  .why-underline{width:54px;height:5px;background:var(--yellow);border-radius:2px;margin-top:22px}
+  .rows{margin-top:48px;display:flex;flex-direction:column;gap:14px}
+  .row-item{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:center;background:var(--white);border:1px solid var(--hair);border-radius:16px;padding:30px 38px;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+  .row-item:hover{transform:translateX(6px);box-shadow:var(--shadow-soft)}
+  .row-item .label{font-size:1.6rem;font-weight:500;color:var(--cobalt);letter-spacing:-.02em}
+  .row-item .statement{font-size:1.18rem;font-weight:600;color:var(--navy);letter-spacing:-.015em}
 
-  /* ----- Section backgrounds ----- */
-  .bg-deep{background:var(--blue-deep)}
-  .section-white{background:#fff}
-
-  /* ----- Problem section ----- */
-  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
-  .prob{background:#fff;border:1px solid rgba(12,26,34,.10);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-soft)}
-  .prob .x{
-    width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
-    background:var(--dark);color:#ff6b6b;margin-bottom:18px;font-weight:800;font-size:1.3rem
-  }
-  .prob h3{font-size:1.2rem;margin-bottom:8px}
-  .prob p{color:var(--ink-soft);font-weight:500;font-size:.98rem}
-
-  /* ----- Process ----- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;counter-reset:s}
-  .step{
-    background:var(--white);border-radius:var(--radius);padding:32px 30px;
-    box-shadow:var(--shadow-soft);position:relative;overflow:hidden;
-    transition:transform .4s var(--ease)
-  }
-  .step:hover{transform:translateY(-6px)}
-  .step::before{
-    counter-increment:s;content:"0" counter(s);
-    position:absolute;top:18px;right:24px;
-    font-size:3.4rem;font-weight:800;color:rgba(12,26,34,.07);letter-spacing:-.04em
-  }
-  .step .ic{width:52px;height:52px;border-radius:15px;background:var(--blue);display:grid;place-items:center;margin-bottom:20px;color:var(--ink)}
-  .step .ic svg{width:26px;height:26px}
-  .step h3{font-size:1.32rem;margin-bottom:10px}
-  .step p{color:var(--ink-soft);font-weight:500}
-  .step.feature{background:var(--ink);color:#fff}
-  .step.feature::before{color:rgba(255,255,255,.08)}
-  .step.feature .ic{background:var(--blue)}
-  .step.feature p{color:rgba(255,255,255,.72)}
-
-  /* ----- Features split ----- */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;margin-top:54px}
-  .feat-card{
-    background:rgba(255,255,255,.4);border:1px solid var(--line-light);
-    border-radius:var(--radius);padding:34px;display:flex;flex-direction:column;
-    transition:transform .4s var(--ease),background .3s
-  }
-  .feat-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.55)}
-  .feat-card .ic{width:50px;height:50px;border-radius:14px;background:var(--ink);color:var(--blue);display:grid;place-items:center;margin-bottom:20px}
-  .feat-card .ic svg{width:25px;height:25px}
-  .feat-card h3{font-size:1.45rem;margin-bottom:10px}
-  .feat-card p{color:var(--ink-soft);font-weight:500}
-  .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:54px}
-  .feat-list .row{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.32);border-radius:var(--radius-sm);padding:18px 20px}
-  .feat-list .tick{width:28px;height:28px;flex:none;border-radius:50%;background:var(--ink);color:var(--blue);display:grid;place-items:center;margin-top:2px}
-  .feat-list .tick svg{width:15px;height:15px}
-  .feat-list h4{font-size:1.05rem;margin-bottom:2px}
-  .feat-list p{font-size:.92rem;color:var(--ink-soft);font-weight:500}
-
-  /* ----- FAQ ----- */
-  .faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
-  .faq-list{display:flex;flex-direction:column;gap:12px}
-  .qa{background:rgba(255,255,255,.4);border:1px solid var(--line-light);border-radius:var(--radius-sm);overflow:hidden;transition:background .3s}
-  .qa.open{background:var(--white)}
-  .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 26px;text-align:left;font-weight:700;font-size:1.08rem;color:var(--ink)}
-  .qa .plus{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ink);color:var(--blue);display:grid;place-items:center;transition:.35s var(--ease)}
-  .qa.open .plus{transform:rotate(45deg);background:var(--blue);color:var(--ink)}
-  .qa .plus svg{width:16px;height:16px}
+  /* ---------- FAQ ---------- */
+  .faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;position:relative}
+  .faq-deco{position:absolute;left:-10px;bottom:-30px;width:100px;height:80px;
+    background-image:radial-gradient(var(--cobalt) 1.3px,transparent 1.3px);background-size:22px 22px;opacity:.26}
+  .faq-left .lead{margin-top:22px}
+  .faq-left .btn{margin-top:30px}
+  .faq-list{display:flex;flex-direction:column;gap:14px}
+  .qa{background:var(--white);border:1px solid var(--hair);border-radius:16px;overflow:hidden;transition:box-shadow .3s}
+  .qa.open{box-shadow:var(--shadow-soft)}
+  .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 28px;text-align:left;font-weight:600;font-size:1.08rem;color:var(--cobalt)}
+  .qa .pm{width:32px;height:32px;flex:none;border-radius:50%;border:1.5px solid var(--cobalt);color:var(--cobalt);display:grid;place-items:center;transition:.3s var(--ease)}
+  .qa.open .pm{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .qa .pm svg{width:15px;height:15px}
+  .qa .pm .minus{display:none}
+  .qa.open .pm .plus{display:none}
+  .qa.open .pm .minus{display:block}
   .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
-  .qa .ans p{padding:0 26px 24px;color:var(--ink-soft);font-weight:500}
+  .qa .ans p{padding:0 28px 26px;color:var(--ink-soft);font-weight:500;max-width:42em}
 
-  /* ----- Final CTA ----- */
-  .cta{margin:0 18px 28px;border-radius:42px;background:linear-gradient(150deg,var(--dark-2),var(--dark));color:#fff;overflow:hidden;position:relative}
-  .cta::before{
-    content:"";position:absolute;inset:0;
-    background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
-    background-size:60px 60px;
-    -webkit-mask-image:radial-gradient(110% 120% at 20% 10%,#000,transparent 70%);
-    mask-image:radial-gradient(110% 120% at 20% 10%,#000,transparent 70%);
-  }
-  .cta::after{
-    content:"";position:absolute;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,rgba(116,169,224,.22),transparent 65%);
-    right:-120px;top:-140px;pointer-events:none
-  }
-  .cta-inner{padding:84px 60px;position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .cta h2{color:#fff;font-size:clamp(2.2rem,4vw,3.4rem)}
-  .cta .lead{color:rgba(255,255,255,.76);margin-top:18px;max-width:30em}
-  .cta-points{display:flex;flex-direction:column;gap:12px;margin-top:28px}
-  .cta-points span{display:flex;align-items:center;gap:12px;font-weight:600;color:rgba(255,255,255,.9)}
-  .cta-points .t{width:24px;height:24px;flex:none;border-radius:50%;background:var(--blue);color:var(--ink);display:grid;place-items:center}
+  /* ---------- Final CTA ---------- */
+  .cta{position:relative;border:1px solid var(--hair);border-radius:28px;background:var(--white);overflow:hidden}
+  .cta-concrete{position:absolute;left:0;bottom:0;width:360px;height:260px;background:linear-gradient(135deg,#e9e9e4,#deded8);clip-path:polygon(0 26%,52% 58%,0 100%);opacity:.8;pointer-events:none}
+  .cta-concrete::after{content:"";position:absolute;left:8%;top:34%;width:300px;height:1px;background:rgba(10,14,26,.07);transform:rotate(30deg)}
+  .cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:60px;align-items:center;padding:72px 64px}
+  .cta h2{color:var(--cobalt)}
+  .cta-left .lead{margin-top:22px}
+  .cta-points{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+  .cta-points span{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--navy)}
+  .cta-points .t{width:24px;height:24px;flex:none;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center}
   .cta-points .t svg{width:13px;height:13px}
-  .form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:32px;backdrop-filter:blur(6px)}
-  .form h3{font-size:1.35rem;color:#fff;margin-bottom:6px}
-  .form p.sub{color:rgba(255,255,255,.6);font-size:.92rem;font-weight:500;margin-bottom:22px}
-  .field{margin-bottom:14px}
-  .field label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
-  .field input,.field select{
-    width:100%;padding:.95rem 1.1rem;border-radius:13px;
-    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
-    color:#fff;font-family:inherit;font-size:1rem;transition:.25s
-  }
-  .field input::placeholder{color:rgba(255,255,255,.4)}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,.12)}
-  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.1rem center}
-  .field select option{color:#11202b}
-  .form .btn-primary{width:100%;justify-content:center;margin-top:8px}
-  .form .fineprint{text-align:center;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
-  .form-success{display:none;text-align:center;padding:24px 0}
-  .form-success.show{display:block}
-  .form-success .check{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;margin:0 auto 18px}
-  .form-success .check svg{width:32px;height:32px}
-  .form-success h3{color:#fff;margin-bottom:8px}
-  .form-success p{color:rgba(255,255,255,.7);font-weight:500}
 
-  /* ----- Footer ----- */
-  footer{background:var(--dark);color:#fff;padding:84px 0 40px;position:relative;z-index:2}
+  .form{background:var(--white);border:1px solid var(--hair);border-radius:22px;padding:34px;box-shadow:var(--shadow)}
+  .form h3{font-size:1.4rem;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:-.015em}
+  .form p.sub{color:var(--ink-soft);font-size:.92rem;font-weight:500;margin-bottom:24px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);margin-bottom:7px}
+  .field input,.field select{width:100%;padding:.95rem 1.05rem;border-radius:11px;background:var(--grey);border:1px solid var(--hair);color:var(--navy);font-family:inherit;font-size:1rem;transition:.25s}
+  .field input::placeholder{color:rgba(10,14,26,.4)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--cobalt);background:var(--white);box-shadow:0 0 0 3px rgba(0,88,246,.12)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%230A0E1A' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.05rem center}
+  .form .btn-yellow{width:100%;justify-content:center;margin-top:8px}
+  .form .fineprint{display:flex;align-items:center;justify-content:center;gap:7px;text-align:center;font-size:.78rem;color:var(--ink-soft);margin-top:14px}
+  .form .fineprint svg{width:13px;height:13px}
+  .form-success{display:none;text-align:center;padding:30px 0}
+  .form-success.show{display:block}
+  .form-success .check{width:62px;height:62px;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center;margin:0 auto 18px}
+  .form-success .check svg{width:30px;height:30px}
+  .form-success h3{color:var(--navy);margin-bottom:8px}
+  .form-success p{color:var(--ink-soft);font-weight:500}
+
+  /* ---------- Footer (unchanged) ---------- */
+  footer{background:var(--foot-bg);color:#fff;padding:84px 0 40px;position:relative;z-index:2}
   .foot-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:520px;padding-bottom:56px}
   .foot-col h5{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;color:#fff}
   .foot-col a{display:block;color:rgba(255,255,255,.55);font-weight:600;padding:7px 0;transition:.2s}
   .foot-col a:hover{color:#fff}
-  .foot-wordmark{display:flex;align-items:flex-end;gap:.04em;font-weight:800;font-size:clamp(3.2rem,12vw,8.5rem);letter-spacing:-.045em;line-height:.85;color:#fff;padding:52px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
-  .foot-wordmark .dot{width:.16em;height:.16em;background:var(--blue-deep);display:block;margin-bottom:.12em;border-radius:3px;flex:none}
+  .foot-wordmark{display:flex;align-items:flex-end;gap:.04em;font-family:var(--font-display);font-weight:800;font-size:clamp(3.2rem,12vw,8.5rem);letter-spacing:-.045em;line-height:.85;color:#fff;padding:52px 0 44px;border-top:1px solid rgba(255,255,255,.1)}
+  .foot-wordmark .dot{width:.16em;height:.16em;background:var(--foot-dot);display:block;margin-bottom:.12em;border-radius:3px;flex:none}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-weight:600;font-size:.9rem}
 
-  /* ----- Reveal animation ----- */
+  /* ---------- Reveal ---------- */
   .reveal{opacity:1;transform:none}
   .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
   .js .reveal.in{opacity:1;transform:none}
   .reveal[data-d="1"]{transition-delay:.08s}
   .reveal[data-d="2"]{transition-delay:.16s}
   .reveal[data-d="3"]{transition-delay:.24s}
-  @media (prefers-reduced-motion:reduce){
-    .js .reveal{opacity:1;transform:none;transition:none}
-    html{scroll-behavior:auto}
-  }
+  @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
-  /* ----- Responsive ----- */
+  /* ---------- Responsive ---------- */
   @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr;gap:48px}
-    .dash{transform:rotate(0)}
-    .cta-inner,.faq-grid{grid-template-columns:1fr;gap:34px}
-    .prob-grid,.steps{grid-template-columns:1fr}
-    .split,.feat-list{grid-template-columns:1fr}
-    .cta-inner{padding:60px 32px}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .prob-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .step{border-left:none;border-top:1px solid var(--hair-blue)}
+    .step:first-child{border-top:none}
+    .faq-grid,.cta-inner{grid-template-columns:1fr;gap:38px}
+    .cta-inner{padding:48px 32px}
+    .row-item{grid-template-columns:1fr;gap:8px;padding:26px 30px}
+    .sec{padding:84px 0}
   }
   @media(max-width:680px){
-    .nav-links,.nav .btn-primary{display:none}
+    .nav-links,.nav .btn-yellow{display:none}
     .nav-toggle{display:block}
-    .nav{padding:12px 12px 12px 22px}
     .mobile-menu{display:block}
-    .sec{padding:70px 0}
     .wrap{padding:0 20px}
-    .cta{margin:0 12px}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .deco-line,.deco-dots,.faq-deco{display:none}
   }
-
-  /* ----- Mobile menu ----- */
-  .mobile-menu{
-    display:none;position:fixed;inset:0;z-index:49;
-    background:var(--navy);padding:120px 28px 40px;
-    transform:translateY(-100%);transition:transform .45s var(--ease);
-  }
-  .mobile-menu.open{transform:none}
-  .mobile-menu a{display:block;color:#fff;font-size:1.6rem;font-weight:700;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
-  .mobile-menu .btn{margin-top:28px;width:100%;justify-content:center}
 </style>
 </head>
 <body>
@@ -374,7 +253,7 @@
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-right">
-        <a href="#book" class="btn btn-primary">Book a free audit</a>
+        <a href="#book" class="btn btn-yellow">Book a free audit</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
@@ -385,7 +264,7 @@
   <a href="#services">Services</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
-  <a href="#book" class="btn btn-primary">Book a free audit</a>
+  <a href="#book" class="btn btn-yellow">Book a free audit</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -394,85 +273,48 @@
     <div class="hero-grid">
       <div class="hero-copy">
         <span class="eyebrow reveal">A growth partner for local service businesses</span>
-        <h1 class="h-xl reveal" data-d="1">Your next customer is already searching.</h1>
-        <p class="lead reveal" data-d="2">Right now, someone nearby is typing your service into Google. Blueprint makes sure they find you first — and turns that click into a booked job. We don't just run ads; we help local businesses grow.</p>
+        <h1 class="display h-hero reveal" data-d="1">Where Better Revenue Gets Built</h1>
+        <p class="lead reveal" data-d="2">We help local service businesses grow revenue with sharper marketing, smarter technology, and a team that understands your trade.</p>
         <div class="hero-cta reveal" data-d="3">
-          <a href="#book" class="btn btn-primary btn-lg">Book a free audit
+          <a href="#book" class="btn btn-cobalt btn-lg">Book a free audit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a href="#process" class="btn btn-white btn-lg">See how it works
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a href="#process" class="btn btn-ghost btn-lg">See how it works</a>
+        </div>
+        <div class="hero-trust reveal" data-d="3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+          Trusted by local service businesses across the UK
         </div>
       </div>
-
-      <div class="hero-visual reveal" data-d="2">
-        <div class="dash">
-          <div class="dash-bar"><i></i><i></i><i></i><small>Campaign performance</small></div>
-          <div class="metrics">
-            <div class="metric"><label>Leads</label><div class="num"><span data-count="1248">0</span><span class="up">▲ 38%</span></div></div>
-            <div class="metric"><label>Cost / lead</label><div class="num"><span>£<span data-count="15">0</span></span></div></div>
-            <div class="metric"><label>Conv. rate</label><div class="num"><span><span data-count="9.2" data-suffix="%">0</span></span></div></div>
-          </div>
-          <div class="chart-card">
-            <div class="chart-head">
-              <b>Qualified leads over time</b>
-              <span class="legend"><span><i style="background:#5f99d8"></i>Leads</span><span><i style="background:#e9c20c"></i>Spend</span></span>
-            </div>
-            <div class="chart">
-              <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
-                <g stroke="#e7eef6" stroke-width="1">
-                  <line x1="0" y1="38" x2="400" y2="38"/><line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="112" x2="400" y2="112"/>
-                </g>
-                <path class="spark spark-spend" d="M5,120 L70,116 L135,108 L200,110 L265,98 L330,96 L395,90" fill="none" stroke="#e9c20c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/>
-                <path class="spark spark-leads" d="M5,128 L70,112 L135,96 L200,84 L265,58 L330,42 L395,22" fill="none" stroke="#5f99d8" stroke-width="3.5" stroke-linecap="round"/>
-                <circle class="dot" cx="395" cy="22" r="5" fill="#5f99d8"/>
-              </svg>
-            </div>
-          </div>
-          <div class="float-badge"><small>Booked jobs</small><b>+312%</b></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== INDUSTRY BAR ===== -->
-<section class="bar">
-  <div class="wrap">
-    <div class="bar-inner reveal">
-      <p>We work with local service businesses like these:</p>
-      <div class="chips">
-        <span class="chip">Plumbing</span>
-        <span class="chip">Electrical</span>
-        <span class="chip">Roofing</span>
-        <span class="chip">HVAC</span>
-        <span class="chip">Landscaping</span>
-        <span class="chip">Cleaning</span>
-        <span class="chip">Locksmiths</span>
+      <div class="hero-media reveal" data-d="2">
+        <img src="images/hero-image.png" alt="Modern white architecture against a clear blue sky" />
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== PROBLEM ===== -->
-<section class="sec section-white">
+<section class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The problem</span>
-      <h2 class="h-lg" style="margin-top:18px">Most local businesses pay for clicks that never ring the phone</h2>
+      <h2 class="display h-sec cobalt" style="margin-top:18px">Most local businesses pay for clicks that never ring the phone</h2>
     </div>
     <div class="prob-grid">
-      <div class="prob reveal" data-d="1">
-        <div class="x">✕</div>
+      <div class="card reveal" data-d="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.5 18 2.5-7.5L20.5 11 3 3z"/></svg></div>
         <h3>Clicks aren't customers</h3>
         <p>You pay every time someone clicks — including the tyre-kickers, the wrong jobs, and the competitor checking your ad. A click is not a booking.</p>
       </div>
-      <div class="prob reveal" data-d="2">
-        <div class="x">✕</div>
+      <div class="card reveal" data-d="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg></div>
         <h3>Money leaks in quietly</h3>
         <p>Budget drains into searches outside your patch, services you don't offer, and hours you're closed. You'd never spot it on the invoice.</p>
       </div>
-      <div class="prob reveal" data-d="3">
-        <div class="x">✕</div>
+      <div class="card reveal" data-d="3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><path d="m4 4 16 16"/></svg></div>
         <h3>You can't see what works</h3>
         <p>Your reports look busy but say little. The one number that matters — what a real lead actually costs you — is nowhere to be found.</p>
       </div>
@@ -483,58 +325,68 @@
 <!-- ===== PROCESS ===== -->
 <section class="sec" id="process">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head proc-head reveal">
+      <span class="deco-dots"></span><span class="deco-line"></span>
       <span class="eyebrow">How we work</span>
-      <h2 class="h-lg" style="margin-top:18px">We treat every pound like it's our own</h2>
-      <p class="lead">Most agencies set up your account and leave it running. We don't. We build your campaigns on real research, point them at the work that pays best, and sharpen them every week — like a partner who has skin in your growth.</p>
+      <h2 class="display h-sec cobalt" style="margin-top:18px">We treat every pound like it's our own</h2>
+      <p class="lead">Most agencies set up your account and leave it running. We don't. We build your campaigns on real research, point them at the work that pays best, and sharpen them every week — like a partner with skin in your growth.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal" data-d="1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-top">
+          <div class="step-num">01</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        </div>
         <h3>Audit &amp; strategy</h3>
+        <div class="uline"></div>
         <p>First we learn your business — your best jobs, your area, your competitors. Then we find exactly where your money is leaking, and where the real opportunity sits.</p>
       </div>
-      <div class="step feature reveal" data-d="2">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg></div>
+      <div class="step">
+        <div class="step-top">
+          <div class="step-num">02</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div>
+        </div>
         <h3>Build &amp; launch</h3>
+        <div class="uline"></div>
         <p>We build campaigns aimed only at the jobs that make you money, and track every call and form — so we always know which ads turn into real, booked work.</p>
       </div>
-      <div class="step reveal" data-d="3">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M21 8V3h-5"/></svg></div>
+      <div class="step">
+        <div class="step-top">
+          <div class="step-num">03</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M21 8V3h-5"/></svg></div>
+        </div>
         <h3>Optimise &amp; scale</h3>
-        <p>Then the real work begins. Every week we cut what's wasting money and back what's winning, driving your cost per lead down — and your booked jobs up.</p>
+        <div class="uline"></div>
+        <p>Then the real work begins. Every week we cut what's wasting money and back what's winning — driving your cost per lead down, and your booked jobs up.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FEATURES / SERVICES ===== -->
-<section class="sec bg-deep" id="services">
+<!-- ===== WHY BLUEPRINT ===== -->
+<section class="sec" id="services">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Why Blueprint</span>
-      <h2 class="h-lg" style="margin-top:18px">More than an ads agency. A partner in your growth.</h2>
+      <h2 class="display h-sec why-title" style="margin-top:18px"><span class="navy">More than an ads agency.</span><br><span class="cobalt">A partner in your growth.</span></h2>
+      <div class="why-underline"></div>
     </div>
-    <div class="split">
-      <div class="feat-card reveal" data-d="1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
-        <h3>Qualified leads only</h3>
-        <p>We don't chase clicks. We bring you people in your area, searching for exactly what you do, ready to pick up the phone. Every pound goes toward work you can actually book.</p>
+    <div class="rows">
+      <div class="row-item reveal" data-d="1">
+        <div class="label">Quality</div>
+        <div class="statement">No tyre-kickers. Just jobs you can book.</div>
       </div>
-      <div class="feat-card reveal" data-d="2">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><rect x="8" y="11" width="3" height="6"/><rect x="13" y="7" width="3" height="10"/></svg></div>
-        <h3>Transparent reporting</h3>
-        <p>You'll always know what your money is doing. One clear report: leads, calls, and what each one cost. No jargon, no vanity metrics, nothing hidden.</p>
+      <div class="row-item reveal" data-d="1">
+        <div class="label">Transparency</div>
+        <div class="statement">Know where every pound goes.</div>
       </div>
-      <div class="feat-card reveal" data-d="1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></div>
-        <h3>No long-term contracts</h3>
-        <p>We earn your business every month. Stay because the phone keeps ringing — never because you're tied into a contract you've come to regret.</p>
+      <div class="row-item reveal" data-d="2">
+        <div class="label">Freedom</div>
+        <div class="statement">Stay because it works. Not because you're trapped.</div>
       </div>
-      <div class="feat-card reveal" data-d="2">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/></svg></div>
-        <h3>A genuine passion for creating value</h3>
-        <p>We got into this to help local businesses modernise how they market and grow. We treat your budget like our own livelihood — because seeing you win is the part of the job we love most.</p>
+      <div class="row-item reveal" data-d="2">
+        <div class="label">Passion</div>
+        <div class="statement">We're genuinely passionate about helping local businesses grow.</div>
       </div>
     </div>
   </div>
@@ -544,31 +396,34 @@
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="faq-grid">
-      <div class="sec-head reveal">
+      <span class="faq-deco"></span>
+      <div class="faq-left reveal">
         <span class="eyebrow">FAQ</span>
-        <h2 class="h-lg" style="margin-top:18px">Straight answers, no sales spin</h2>
+        <h2 class="display h-sec cobalt" style="margin-top:18px">Straight answers, no sales spin</h2>
         <p class="lead">Still weighing it up? Book a free audit and we'll give you honest answers about your business — no pressure, no obligation.</p>
-        <a href="#book" class="btn btn-ghost" style="margin-top:8px">Book a free audit</a>
+        <a href="#book" class="btn btn-outline">Book a free audit
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
       <div class="faq-list reveal" data-d="1">
-        <div class="qa">
-          <button>How much should I budget for Google Ads?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="ans"><p>There's no one-size answer — it depends on your services and your area. Most owners we work with start somewhere between £750 and £2,000 a month in ad spend. In your free audit, we'll suggest a realistic figure based on what your competitors spend and the work you want to win.</p></div>
+        <div class="qa open">
+          <button>How much should I budget for Google Ads?<span class="pm"><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><svg class="minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></span></button>
+          <div class="ans"><p>Budgets vary depending on your goals, industry, and location. Most of our clients invest between £1,000 and £10,000+ per month. In your free audit, we'll help you find the right level to get the best possible return.</p></div>
         </div>
         <div class="qa">
-          <button>Am I locked into a long contract?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <button>Am I locked into a long contract?<span class="pm"><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><svg class="minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></span></button>
           <div class="ans"><p>No. We work month to month. We'd rather keep your business by getting results than by tying you down. Pause or leave with 30 days' notice — though most clients stay, because the phone keeps ringing.</p></div>
         </div>
         <div class="qa">
-          <button>How quickly will I see leads?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <button>How quickly will I see leads?<span class="pm"><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><svg class="minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></span></button>
           <div class="ans"><p>Enquiries can start coming in within days of going live. The first month or two is about learning what works — and that's when your cost per lead drops and the quality of each enquiry climbs.</p></div>
         </div>
         <div class="qa">
-          <button>Which industries do you work with?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <button>Which industries do you work with?<span class="pm"><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><svg class="minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></span></button>
           <div class="ans"><p>Local service businesses are all we do — plumbers, electricians, roofers, HVAC, landscapers, cleaners, locksmiths and the like. That focus is exactly why we get results faster than a jack-of-all-trades agency.</p></div>
         </div>
         <div class="qa">
-          <button>What's included in the management fee?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <button>What's included in the management fee?<span class="pm"><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><svg class="minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></span></button>
           <div class="ans"><p>Everything but the ad spend itself: strategy, campaign build, tracking setup, weekly optimisation, and a real person who knows your account and reports in plain English. Your ad budget goes straight to Google — we never mark it up.</p></div>
         </div>
       </div>
@@ -577,65 +432,68 @@
 </section>
 
 <!-- ===== FINAL CTA ===== -->
-<section class="sec" id="book" style="padding-bottom:20px">
-  <div class="cta reveal">
-    <div class="cta-inner">
-      <div>
-        <span class="eyebrow on-dark">Free, no-obligation audit</span>
-        <h2 style="margin-top:18px">Let's turn searches into booked jobs</h2>
-        <p class="lead">Tell us a little about your business and we'll send back a free audit: where you're losing work today, and exactly how we'd fix it. No pressure — just a clear plan you can use, whether you hire us or not.</p>
-        <div class="cta-points">
-          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>A clear growth plan for your services and area</span>
-          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>An honest look at where your budget goes today</span>
-          <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>No pressure, no jargon, no lock-in</span>
+<section class="sec" id="book" style="padding-bottom:60px">
+  <div class="wrap">
+    <div class="cta reveal">
+      <span class="cta-concrete" aria-hidden="true"></span>
+      <div class="cta-inner">
+        <div class="cta-left">
+          <span class="eyebrow">Free, no-obligation audit</span>
+          <h2 class="display h-sec" style="margin-top:16px;font-size:clamp(2.4rem,4.8vw,4.4rem)">Let's turn searches into booked jobs</h2>
+          <p class="lead">Tell us a little about your business and we'll send back a free audit: where you're losing work today, and exactly how we'd fix it. No pressure — just a clear plan you can use, whether you hire us or not.</p>
+          <div class="cta-points">
+            <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>A clear growth plan for your services and area</span>
+            <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>An honest look at where your budget goes today</span>
+            <span><span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>No pressure, no jargon, no lock-in</span>
+          </div>
         </div>
-      </div>
 
-      <div class="form">
-        <form id="auditForm">
-          <h3>Book your free audit</h3>
-          <p class="sub">Takes a minute. We'll reply within one working day.</p>
-          <div class="field">
-            <label for="name">Your name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        <div class="form">
+          <form id="auditForm">
+            <h3>Book your free audit</h3>
+            <p class="sub">Takes a minute. We'll reply within one working day.</p>
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="field">
+              <label for="business">Business name</label>
+              <input type="text" id="business" name="business" placeholder="Smith Plumbing Ltd" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@smithplumbing.co.uk" required />
+            </div>
+            <div class="field">
+              <label for="service">Your service</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>Plumbing &amp; heating</option>
+                <option>Electrical</option>
+                <option>Roofing</option>
+                <option>HVAC</option>
+                <option>Landscaping</option>
+                <option>Cleaning</option>
+                <option>Other local service</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-yellow">Get my free audit
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="fineprint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>We respect your inbox. No spam, ever.</p>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+            <h3>Thanks — you're booked in</h3>
+            <p>We've got your details. One of our team will be in touch within one working day with your free audit.</p>
           </div>
-          <div class="field">
-            <label for="business">Business name</label>
-            <input type="text" id="business" name="business" placeholder="Smith Plumbing Ltd" required />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@smithplumbing.co.uk" required />
-          </div>
-          <div class="field">
-            <label for="service">Your service</label>
-            <select id="service" name="service" required>
-              <option value="" disabled selected>Select a service…</option>
-              <option>Plumbing &amp; heating</option>
-              <option>Electrical</option>
-              <option>Roofing</option>
-              <option>HVAC</option>
-              <option>Landscaping</option>
-              <option>Cleaning</option>
-              <option>Other local service</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Get my free audit
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          <p class="fineprint">We respect your inbox. No spam, ever.</p>
-        </form>
-        <div class="form-success" id="formSuccess">
-          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-          <h3>Thanks — you're booked in</h3>
-          <p>We've got your details and one of our strategists will be in touch within one working day with your free audit.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== FOOTER (unchanged) ===== -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
@@ -662,13 +520,11 @@
 </footer>
 
 <script>
-  // ---- Sticky nav state ----
+  // Sticky nav state
   const navShell = document.getElementById('navShell');
-  addEventListener('scroll', () => {
-    navShell.classList.toggle('scrolled', scrollY > 20);
-  });
+  addEventListener('scroll', () => navShell.classList.toggle('scrolled', scrollY > 20));
 
-  // ---- Mobile menu ----
+  // Mobile menu
   const toggle = document.getElementById('navToggle');
   const menu = document.getElementById('mobileMenu');
   toggle.addEventListener('click', () => {
@@ -677,49 +533,16 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menu.classList.remove('open');
-    toggle.classList.remove('open');
-    document.body.style.overflow = '';
+    menu.classList.remove('open'); toggle.classList.remove('open'); document.body.style.overflow = '';
   }));
 
-  // ---- Reveal on scroll ----
+  // Reveal on scroll
   const revObs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); } });
   }, { threshold: 0.14 });
   document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  // ---- Count-up stats ----
-  function animateCount(el){
-    const target = parseFloat(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    const dur = 1400; const start = performance.now();
-    const isInt = Number.isInteger(target);
-    function tick(now){
-      const p = Math.min((now - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const val = target * eased;
-      el.textContent = (isInt ? Math.round(val) : val.toFixed(1)).toLocaleString() + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = (isInt ? Math.round(target) : target).toLocaleString() + suffix;
-    }
-    requestAnimationFrame(tick);
-  }
-  const countObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); countObs.unobserve(e.target); } });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
-
-  // ---- Animate hero chart line ----
-  const leadsPath = document.querySelector('.spark-leads');
-  if (leadsPath){
-    const len = leadsPath.getTotalLength();
-    leadsPath.style.strokeDasharray = len;
-    leadsPath.style.strokeDashoffset = len;
-    leadsPath.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(.22,.61,.36,1) .3s';
-    requestAnimationFrame(() => { leadsPath.style.strokeDashoffset = 0; });
-  }
-
-  // ---- FAQ accordion ----
+  // FAQ accordion
   document.querySelectorAll('.qa button').forEach(btn => {
     btn.addEventListener('click', () => {
       const qa = btn.parentElement;
@@ -729,8 +552,11 @@
       if (!open){ qa.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     });
   });
+  // open the first FAQ by default
+  const firstOpen = document.querySelector('.qa.open .ans');
+  if (firstOpen) firstOpen.style.maxHeight = firstOpen.scrollHeight + 'px';
 
-  // ---- Form submit ----
+  // Form submit
   document.getElementById('auditForm').addEventListener('submit', (e) => {
     e.preventDefault();
     document.getElementById('auditForm').style.display = 'none';
